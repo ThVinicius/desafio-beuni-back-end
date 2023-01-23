@@ -6,7 +6,11 @@
   "scripts": {
     "start": "node ./dist/src/server.js",
     "dev": "nodemon ./src/server.ts",
+    "seed": "prisma db seed",
     "test": "jest --no-cache -i --verbose"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed/seed.ts"
   },
   "author": "Vinicius Pacheco dos Santos",
   "license": "ISC",
