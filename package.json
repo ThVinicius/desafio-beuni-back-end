@@ -4,6 +4,7 @@
   "description": "Rest API construida para o desafio tecnico da beuni",
   "main": "index.js",
   "scripts": {
+    "build": "prisma migrate deploy && prisma db seed && tsc",
     "start": "node ./dist/src/server.js",
     "dev": "nodemon ./src/server.ts",
     "seed": "prisma db seed",
