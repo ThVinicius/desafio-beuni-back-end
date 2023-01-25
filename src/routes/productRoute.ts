@@ -5,9 +5,11 @@ import productSchema from '../schemas/productSchema'
 
 const route = Router()
 
+const isQuery = true
+
 route.get(
   '/products',
-  schemaValidator(productSchema.queryProduct),
+  schemaValidator(productSchema.queryProduct, isQuery),
   productController.getProducts
 )
 
