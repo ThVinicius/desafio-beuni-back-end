@@ -11,4 +11,10 @@ customerRoute.post(
   customerController.signUp
 )
 
+customerRoute.post(
+  '/sign-in',
+  schemaValidator(customerSchema.signIn),
+  customerController.signIn
+)
+
 export default customerRoute

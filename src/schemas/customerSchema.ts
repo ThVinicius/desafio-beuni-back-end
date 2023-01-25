@@ -6,4 +6,9 @@ const add = joi.object({
   confirmPassword: joi.valid(joi.ref('password')).required()
 })
 
-export default { add }
+const signIn = joi.object({
+  nickname: joi.string().trim().max(33).required(),
+  password: joi.string().trim().required()
+})
+
+export default { add, signIn }

@@ -1,6 +1,8 @@
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 import customerRepository from '../repositories/customerRepository'
 import { ICustomer } from '../types/customerType'
+import { unauthorized } from '../utils/throwError'
 
 async function add(data: ICustomer) {
   const encryptedPassword = bcryptPassword(data.password)
@@ -20,6 +22,35 @@ function bcryptPassword(password: string) {
   return bcrypt.hashSync(password, saltRounds)
 }
 
+async function handleSignIn(user: ICustomer) {
+  const dbUser = await findByNickname(user.nickname)
+
+  if (dbUser === null) unauthorized('nickname ou senha incorreta')
+
+  validateBcrypt(user.password!, dbUser!.password!)
+
+  return createToken(dbUser!.id)
+}
+
+function validateBcrypt(decrypted: string, encrypted: string) {
+  const compare = bcrypt.compareSync(decrypted, encrypted)
+
+  if (!compare) return unauthorized('nickname ou senha incorreta')
+}
+
+function findByNickname(nickname: string) {
+  return customerRepository.findByNickname(nickname)
+}
+
+function createToken(id: number) {
+  const secretKey: string = process.env.JWT_SECRET!
+
+  const token = jwt.sign({ customerId: id }, secretKey)
+
+  return token
+}
+
 export default {
-  add
+  add,
+  handleSignIn
 }
