@@ -145,12 +145,6 @@ Vá para o diretório do projeto
   cd desafio-beuni-back-end
 ```
 
-Crie o arquivo `.env` com as seguintes variaveis:
-
-- `POSTGRES_USER=postgres`
-- `POSTGRES_PASSWORD=1234`
-- `DATABASE_URL=postgres://postgres:1234@postgres_development:5432/desafio_beuni`
-
 Faça o build do container
 
 ```bash
@@ -167,6 +161,8 @@ Caso queira parar o container basta utilizar o comando
 
 # Rodar os testes
 
+## Localmente
+
 Instale as dependências
 
 ```bash
@@ -181,6 +177,20 @@ Rode os testes com o comando:
 
 ```bash
 npm run test
+```
+
+## Com o docker
+
+Inicie o docker-compose
+
+```bash
+docker-compose up -d
+```
+
+Execute o comando
+
+```bash
+docker exec back_end_development npm run test
 ```
 
 </br>
