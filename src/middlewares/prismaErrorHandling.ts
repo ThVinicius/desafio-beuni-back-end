@@ -17,6 +17,6 @@ export const prismaErrorHandling: ErrorRequestHandler = (
       return res.status(CONFLIT).send(message)
 
     default:
-      next()
+      next(error)
   }
 }
