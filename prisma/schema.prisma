@@ -10,6 +10,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Customer {
+  id       Int    @id @default(autoincrement())
+  nickname String @unique @db.VarChar(33)
+  password String
+
+  @@map("customers")
+}
+
 model Product {
   id                   Int     @id @default(autoincrement())
   name                 String
