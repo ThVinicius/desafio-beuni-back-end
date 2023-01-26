@@ -4,7 +4,9 @@ import { ICart } from '../types/cartType'
 import { forbidden, notAcceptable, notFound } from '../utils/throwError'
 
 async function add(cart: ICart) {
-  await cartValidation(cart)
+  const product = await cartValidation(cart)
+
+  cart.totalPrice = cart.quantity * product!.price
 
   return await cartRepository.add(cart)
 }
@@ -29,6 +31,8 @@ async function cartValidation(cart: ICart) {
 
   if (product!.stock < cart.quantity)
     notAcceptable('O estoque desse produto não possui a quantidade solicitada!')
+
+  return product
 }
 
 export default { add, remove, findAllByCustomerId }

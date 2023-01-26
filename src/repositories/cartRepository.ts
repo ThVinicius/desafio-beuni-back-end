@@ -8,8 +8,7 @@ async function add(data: ICart) {
 async function findAllByCustomerId(customerId: number) {
   return await prisma.$queryRaw`
     SELECT c.id AS "cartId", p.id AS "productId", p.name, 
-      p.image, p.description, p.category, p.stock, p.brand, p.price,
-	    p."hasFreeShipping", p."minimumQuantity", p.rating 
+      p.image, c."totalPrice" 
     FROM carts c
     JOIN products p ON p.id = c."productId"
     WHERE "customerId" = ${customerId};`
