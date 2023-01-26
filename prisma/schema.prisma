@@ -56,9 +56,10 @@ model Order {
   id         Int      @id @default(autoincrement())
   productId  Int
   customerId Int
+  totalPrice Float
+  orderDate  DateTime
   product    Product  @relation(fields: [productId], references: [id])
   customer   Customer @relation(fields: [customerId], references: [id])
-  orderDate  DateTime
 
   @@index([customerId])
   @@map("orders")
