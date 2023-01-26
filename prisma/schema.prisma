@@ -44,6 +44,7 @@ model Cart {
   productId  Int
   customerId Int
   quantity   Int
+  totalPrice Float
   product    Product  @relation(fields: [productId], references: [id])
   customer   Customer @relation(fields: [customerId], references: [id])
 
