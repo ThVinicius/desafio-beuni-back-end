@@ -13,3 +13,7 @@ export function notFound(message: string) {
 export function conflit(message: string) {
   throw { code: 'Conflit', message }
 }
+
+export function notAcceptable(message: string) {
+  throw { code: 'Not Acceptable', message }
+}

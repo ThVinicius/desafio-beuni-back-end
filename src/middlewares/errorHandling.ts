@@ -1,6 +1,6 @@
 import { ErrorRequestHandler } from 'express'
 
-export const errorHandling: ErrorRequestHandler = (error, req, res, next) => {
+export const errorHandling: ErrorRequestHandler = (error, _, res, __) => {
   switch (error.code) {
     case 'Bad request':
       return res.status(400).send(error.message)
@@ -10,6 +10,9 @@ export const errorHandling: ErrorRequestHandler = (error, req, res, next) => {
 
     case 'Not Found':
       return res.status(404).send(error.message)
+
+    case 'Not Acceptable':
+      return res.status(406).send(error.message)
 
     case 'Conflit':
       return res.status(409).send(error.message)
