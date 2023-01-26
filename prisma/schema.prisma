@@ -56,8 +56,9 @@ model Order {
   id         Int      @id @default(autoincrement())
   productId  Int
   customerId Int
+  quantity   Int
   totalPrice Float
-  orderDate  DateTime
+  orderDate  String
   product    Product  @relation(fields: [productId], references: [id])
   customer   Customer @relation(fields: [customerId], references: [id])
 
