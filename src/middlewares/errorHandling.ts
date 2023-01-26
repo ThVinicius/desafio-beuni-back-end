@@ -8,6 +8,9 @@ export const errorHandling: ErrorRequestHandler = (error, _, res, __) => {
     case 'Unauthorized':
       return res.status(401).send(error.message)
 
+    case 'Forbidden':
+      return res.status(403).send(error.message)
+
     case 'Not Found':
       return res.status(404).send(error.message)
 
