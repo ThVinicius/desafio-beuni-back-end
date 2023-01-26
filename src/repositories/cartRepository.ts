@@ -9,4 +9,8 @@ async function findById(id: number) {
   return await prisma.cart.findUnique({ where: { id } })
 }
 
-export default { add, findById }
+async function remove(id: number) {
+  await prisma.cart.delete({ where: { id } })
+}
+
+export default { add, findById, remove }
