@@ -9,6 +9,10 @@ async function add(cart: ICart) {
   await cartRepository.add(cart)
 }
 
+async function findAllByCustomerId(customerId: number) {
+  return await cartRepository.findAllByCustomerId(customerId)
+}
+
 async function remove(cartId: number, customerId: number) {
   const cart = await cartRepository.findById(cartId)
 
@@ -27,4 +31,4 @@ async function cartValidation(cart: ICart) {
     notAcceptable('O estoque desse produto não possui a quantidade solicitada!')
 }
 
-export default { add, remove }
+export default { add, remove, findAllByCustomerId }

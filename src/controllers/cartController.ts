@@ -13,6 +13,14 @@ async function add(req: Request, res: Response) {
   return res.sendStatus(201)
 }
 
+async function findAllByCustomerId(req: Request, res: Response) {
+  const customerId = res.locals.customer.id
+
+  const carts = await cartService.findAllByCustomerId(customerId)
+
+  return res.status(200).send(carts)
+}
+
 async function remove(req: Request, res: Response) {
   const cartId = Number(req.params.id)
   const customerId = res.locals.customer.id
@@ -22,4 +30,4 @@ async function remove(req: Request, res: Response) {
   return res.sendStatus(200)
 }
 
-export default { add, remove }
+export default { add, remove, findAllByCustomerId }

@@ -13,6 +13,8 @@ cartRoute.post(
   cartController.add
 )
 
+cartRoute.get('/carts', tokenValidate, cartController.findAllByCustomerId)
+
 const isParams = true
 cartRoute.delete(
   '/carts/:id',
