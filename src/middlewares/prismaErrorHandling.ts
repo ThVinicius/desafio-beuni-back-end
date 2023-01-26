@@ -16,6 +16,11 @@ export const prismaErrorHandling: ErrorRequestHandler = (
 
       return res.status(CONFLIT).send(message)
 
+    case 'P2025':
+      const NOT_FOUND = 404
+
+      return res.status(NOT_FOUND).send(error.meta.cause)
+
     default:
       next(error)
   }
