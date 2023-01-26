@@ -17,3 +17,10 @@ export function conflit(message: string) {
 export function notAcceptable(message: string) {
   throw { code: 'Not Acceptable', message }
 }
+
+export function forbidden() {
+  throw {
+    code: 'Forbidden',
+    message: 'Sua autenticação não permite realizar essa operação'
+  }
+}
