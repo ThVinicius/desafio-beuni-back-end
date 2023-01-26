@@ -45,7 +45,7 @@ function findByNickname(nickname: string) {
 function createToken(id: number) {
   const secretKey: string = process.env.JWT_SECRET!
 
-  const token = jwt.sign({ customerId: id }, secretKey)
+  const token = jwt.sign({ id }, secretKey)
 
   return token
 }
