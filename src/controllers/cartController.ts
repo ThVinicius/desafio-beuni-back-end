@@ -8,9 +8,9 @@ async function add(req: Request, res: Response) {
 
   cart.customerId = customerId
 
-  await cartService.add(cart)
+  const cartDb = await cartService.add(cart)
 
-  return res.sendStatus(201)
+  return res.status(201).send(cartDb)
 }
 
 async function findAllByCustomerId(req: Request, res: Response) {

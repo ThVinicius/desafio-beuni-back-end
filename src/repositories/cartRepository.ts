@@ -2,13 +2,13 @@ import prisma from '../database/prisma'
 import { ICart } from '../types/cartType'
 
 async function add(data: ICart) {
-  await prisma.cart.create({ data })
+  return await prisma.cart.create({ data })
 }
 
 async function findAllByCustomerId(customerId: number) {
   return await prisma.$queryRaw`
-    SELECT c.id AS "cartId", p."name" AS product, p.image, 
-	    p.description, p.category, p.stock, p.brand, p.price,
+    SELECT c.id AS "cartId", p.id AS "productId", p.name, 
+      p.image, p.description, p.category, p.stock, p.brand, p.price,
 	    p."hasFreeShipping", p."minimumQuantity", p.rating 
     FROM carts c
     JOIN products p ON p.id = c."productId"

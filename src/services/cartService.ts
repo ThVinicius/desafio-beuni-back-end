@@ -6,7 +6,7 @@ import { forbidden, notAcceptable, notFound } from '../utils/throwError'
 async function add(cart: ICart) {
   await cartValidation(cart)
 
-  await cartRepository.add(cart)
+  return await cartRepository.add(cart)
 }
 
 async function findAllByCustomerId(customerId: number) {
