@@ -1,11 +1,17 @@
 import { Request, Response, NextFunction } from 'express'
 import { ObjectSchema } from 'joi'
 
-function schemaValidator(schema: ObjectSchema, isQuery?: boolean) {
+interface IRequest {
+  isQuery?: boolean
+  isParams?: boolean
+}
+
+function schemaValidator(schema: ObjectSchema, request?: IRequest) {
   let payload
 
   return (req: Request, res: Response, next: NextFunction) => {
-    if (isQuery) payload = req.query
+    if (request?.isQuery) payload = req.query
+    else if (request?.isParams) payload = req.params
     else payload = req.body
 
     const { error } = schema.validate(payload, { abortEarly: false })

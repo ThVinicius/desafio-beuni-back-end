@@ -9,7 +9,7 @@ const isQuery = true
 
 route.get(
   '/products',
-  schemaValidator(productSchema.queryProduct, isQuery),
+  schemaValidator(productSchema.queryProduct, { isQuery }),
   productController.getProducts
 )
 
