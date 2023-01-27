@@ -7,6 +7,7 @@
     "build": "prisma migrate deploy && prisma db seed && tsc",
     "start": "node ./dist/src/server.js",
     "dev": "nodemon ./src/server.ts",
+    "start:docker": "npm run build && npm start",
     "dev:docker": "npm run build && npm run dev",
     "seed": "prisma db seed",
     "test": "jest --no-cache -i --verbose"
