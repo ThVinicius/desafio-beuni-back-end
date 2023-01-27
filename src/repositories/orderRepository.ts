@@ -1,11 +1,34 @@
 import prisma from '../database/prisma'
 import { IOrder, IOrderQuery } from '../types/orderType'
+import { notAcceptable } from '../utils/throwError'
 
 async function add(order: IOrder[], customerId: number) {
-  await prisma.$transaction([
-    prisma.order.createMany({ data: order }),
-    prisma.cart.deleteMany({ where: { customerId } })
-  ])
+  try {
+    // retira a quantidade do produto
+    await prisma.$transaction([
+      ...order.map(order =>
+        prisma.product.update({
+          where: { id: order.productId },
+          data: { stock: { decrement: order.quantity } }
+        })
+      ),
+      // cria o pedido
+      prisma.order.createMany({ data: order }),
+      // deleta o carrinho do cliente
+      prisma.cart.deleteMany({ where: { customerId } })
+    ])
+  } catch (error) {
+    // deleta do carrinho todos os produtos que tem a quantidade maior que o stock
+    await prisma.$queryRaw`
+      DELETE FROM carts WHERE "productId" IN 
+        (SELECT c."productId" FROM carts c 
+          JOIN products p ON p.id = c."productId" 
+          WHERE c.quantity > p.stock);`
+
+    notAcceptable(
+      'O estoque desses produtos não possui a quantidade solicitada!'
+    )
+  }
 }
 
 async function findAllByCustomerId(customerId: number) {
