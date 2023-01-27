@@ -55,7 +55,7 @@ Desafio técnico do processo seletivo da beUni.
 
 # Deploy
 
-- [Link Deploy BackEnd](https://beuni.onrender.com)
+- [Link Deploy BackEnd](https://desafio-beuni-back-end-production.up.railway.app/)
 
 <div id='api-reference'/>
 
