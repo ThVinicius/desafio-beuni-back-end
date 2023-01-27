@@ -6,4 +6,8 @@ async function getAllProducts(queryName?: string) {
   })
 }
 
-export default { getAllProducts }
+async function findById(id: number) {
+  return await prisma.product.findUnique({ where: { id } })
+}
+
+export default { getAllProducts, findById }
