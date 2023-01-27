@@ -20,7 +20,8 @@ export default {
     '<rootDir>/src/schemas',
     '<rootDir>/src/services/testsService.ts',
     '<rootDir>/src/utils',
-    '<rootDir>/tests'
+    '<rootDir>/tests',
+    '<rootDir>/prisma'
   ],
   extensionsToTreatAsEsm: ['.ts'],
   moduleNameMapper: {
