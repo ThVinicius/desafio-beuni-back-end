@@ -6,7 +6,7 @@ import { IOrder } from '../types/orderType'
 async function add(customerId: number) {
   const cart = await cartRepository.findAllByCustomerId(customerId)
 
-  const now = dayjs().format('DD/MM/YYYY - HH:mm')
+  const now = dayjs().format('DD/MM/YYYY - HH:mm:ss')
 
   const order = cart.map(({ productId, quantity, totalPrice }) => {
     return {
