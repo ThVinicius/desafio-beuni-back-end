@@ -1,4 +1,5 @@
 import prisma from '../../src/database/prisma'
+import { customerWithEncryptedPassword } from './customerSeed'
 import getProducts from './data'
 
 async function main() {
@@ -11,6 +12,14 @@ async function main() {
 
     await prisma.product.createMany({ data: products })
   }
+
+  const create = customerWithEncryptedPassword()
+
+  await prisma.customer.upsert({
+    create,
+    update: {},
+    where: { nickname: create.nickname }
+  })
 }
 
 main()
