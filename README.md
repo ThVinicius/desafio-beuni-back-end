@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<h3>Built With</h3>
+<h3>Construído com</h3>
 
   <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" height="30px"/>
   <img src="https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white" height="30px"/>
@@ -47,7 +47,13 @@ Desafio técnico do processo seletivo da beUni.
 
 ## Funções
 
+- Criar uma conta
+- Acessar uma conta
 - Buscar todos os produtos
+- Colocar um produto no carrinho
+- Remover um produto do carrinho
+- Fazer pedidos dos produtos dentro do carrinho
+- Vizualizar os pedidos
 
 </br>
 
@@ -482,9 +488,10 @@ Instale as dependências
 npm i
 ```
 
-Crie o arquivo `.env` no diretório raiz do projeto com a seguinte variavel:
+Crie o arquivo `.env` no diretório raiz do projeto com as seguintes variaveis:
 
 - `DATABASE_URL=postgres://{user}:{password}@localhost:5432/desafio_beuni`
+- `JWT_SECRET=qualquer_coisa`
 
 Crie as tabelas e as sementes do banco de dados
 
@@ -538,9 +545,10 @@ Instale as dependências
 npm i
 ```
 
-Crie o arquivo `.env` no diretório raiz do projeto com a seguinte variavel:
+Crie o arquivo `.env` no diretório raiz do projeto com as seguintes variaveis:
 
 - `DATABASE_URL=postgres://{user}:{password}@localhost:5432/desafio_beuni`
+- `JWT_SECRET=qualquer_coisa`
 
 Rode os testes com o comando:
 
