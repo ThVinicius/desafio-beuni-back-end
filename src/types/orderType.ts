@@ -5,3 +5,16 @@ export interface IOrder {
   totalPrice: number
   orderDate: string
 }
+
+export interface IOrderQuery {
+  orderDate: string
+  totalPrice: number
+  products: {
+    orderId: number
+    productId: number
+    name: string
+    image: string
+    totalPrice: number
+    quantity: number
+  }[]
+}

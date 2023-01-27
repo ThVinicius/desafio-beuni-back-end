@@ -21,4 +21,8 @@ async function add(customerId: number) {
   await orderRepository.add(order, customerId)
 }
 
-export default { add }
+async function findAllByCustomerId(customerId: number) {
+  return await orderRepository.findAllByCustomerId(customerId)
+}
+
+export default { add, findAllByCustomerId }

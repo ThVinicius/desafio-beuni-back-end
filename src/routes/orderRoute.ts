@@ -6,4 +6,6 @@ const orderRoute = Router()
 
 orderRoute.post('/orders', tokenValidate, orderController.add)
 
+orderRoute.get('/orders', tokenValidate, orderController.findAllByCustomerId)
+
 export default orderRoute
